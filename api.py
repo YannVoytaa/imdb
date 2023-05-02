@@ -1,5 +1,6 @@
 import requests
-from apikey import API_KEY 
+import os
+API_KEY = os.getenv('API_KEY')
 
 from fastapi import FastAPI
 
