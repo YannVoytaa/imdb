@@ -1,0 +1,61 @@
+{
+  "doc_type": "pipeline",
+  "pipelines": [{
+    "id": "6125063a-ed2a-403b-964b-e97b71616894",
+    "nodes": [{
+      "id": "automl",
+      "op": "wml-http-score",
+      "outputs": [{
+        "id": "automl"
+      }],
+      "parameters": {
+        "output_logs": true,
+        "input_file_separator": ",",
+        "stage_flag": true,
+        "optimization": {
+          "learning_type": "classification",
+          "label": "labels",
+          "global_stage_include_batched_ensemble_estimators": [],
+          "scorer_for_ranking": "accuracy",
+          "compute_pipeline_notebooks_flag": true,
+          "run_cognito_flag": true,
+          "daub_adaptive_subsampling_max_mem_usage": 15000000000,
+          "holdout_param": 0.1,
+          "cv_num_folds": 3,
+          "train_sample_columns_index_list": [1],
+          "max_num_daub_ensembles": 4
+        },
+        "wml_status": {
+          "url": "https://eu-de.ml.cloud.ibm.com/v4_private/trainings"
+        },
+        "storage": {
+          "exchange": "training-prod",
+          "url": "amqps://ibm_cloud_d19f3dc8_0b0e_40bc_a9ec_23f86b5b66c4:e8a7ce23e6c6b0cb35c40ecf0f40ec8d585f19ba6eb0ca7d940f89e67e8b5e5f@38b75dcd-d733-4daf-846c-06601091ce4a.blr7c6nf0rm8dbgf34rg.private.databases.appdomain.cloud:30852"
+        },
+        "n_parallel_data_connections": 4,
+        "one_vs_all_file": true
+      },
+      "runtime_ref": "autoai",
+      "type": "execution_node"
+    }],
+    "runtime_ref": "hybrid"
+  }],
+  "primary_pipeline": "6125063a-ed2a-403b-964b-e97b71616894",
+  "runtimes": [{
+    "app_data": {
+      "wml_data": {
+        "hardware_spec": {
+          "id": "a6c4923b-b8e4-444c-9f43-8a7ec3020110",
+          "name": "L"
+        },
+        "software_spec": {
+          "name": "autoai-kb_rt22.2-py3.10"
+        }
+      }
+    },
+    "id": "autoai",
+    "name": "auto_ai.kb",
+    "version": "3.1.195"
+  }],
+  "version": "2.0"
+}
